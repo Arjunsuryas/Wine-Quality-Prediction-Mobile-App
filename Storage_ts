@@ -1,0 +1,32 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { WinePrediction } from '@/types/wine';
+
+const STORAGE_KEY = '@wine_predictions';
+
+export async function saveWinePrediction(prediction: WinePrediction): Promise<void> {
+  try {
+    const existing = await getWinePredictionHistory();
+    const updated = [prediction, ...existing].slice(0, 50); // Keep last 50 predictions
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+  } catch (error) {
+    console.error('Error saving prediction:', error);
+  }
+}
+
+export async function getWinePredictionHistory(): Promise<WinePrediction[]> {
+  try {
+    const stored = await AsyncStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (error) {
+    console.error('Error loading prediction history:', error);
+    return [];
+  }
+}
+
+export async function clearWinePredictionHistory(): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    console.error('Error clearing prediction history:', error);
+  }
+}
