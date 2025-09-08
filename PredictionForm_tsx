@@ -1,0 +1,24 @@
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
+import Slider from '@react-native-community/slider';
+import { Sparkles } from 'lucide-react-native';
+import type { WineCharacteristics } from '@/types/wine';
+
+interface PredictionFormProps {
+  onPredict: (characteristics: WineCharacteristics) => void;
+  isLoading: boolean;
+}
+
+export default function PredictionForm({ onPredict, isLoading }: PredictionFormProps) {
+  const [alcohol, setAlcohol] = useState(11.0);
+  const [volatileAcidity, setVolatileAcidity] = useState(0.5);
+  const [citricAcid, setCitricAcid] = useState(0.3);
+  const [residualSugar, setResidualSugar] = useState(2.5);
+});
