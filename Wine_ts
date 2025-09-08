@@ -1,0 +1,28 @@
+export interface WineCharacteristics {
+  alcohol: number; // % by volume
+  volatileAcidity: number; // g/dm³
+  citricAcid: number; // g/dm³
+  residualSugar: number; // g/dm³
+  chlorides: number; // g/dm³
+  freeSulfurDioxide: number; // mg/dm³
+  totalSulfurDioxide: number; // mg/dm³
+  density: number; // g/cm³
+  pH: number; // 0-14 scale
+  sulphates: number; // g/dm³
+}
+
+export interface WinePrediction {
+  id: string;
+  score: number; // 0-10 quality score
+  feedback: string; // Detailed analysis
+  characteristics: WineCharacteristics;
+  timestamp: number; // Unix timestamp
+}
+
+export interface WineQualityRange {
+  min: number;
+  max: number;
+  label: string;
+  color: string;
+  description: string;
+}
