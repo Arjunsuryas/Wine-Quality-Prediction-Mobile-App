@@ -1,0 +1,26 @@
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Grape, Beaker, Award, Brain } from 'lucide-react-native';
+
+export default function AboutScreen() {
+  const factors = [
+    {
+      icon: <Grape size={24} color="#8B1538" />,
+      title: 'Alcohol Content',
+      description: 'Higher alcohol levels generally improve wine quality up to an optimal point',
+    },
+    {
+      icon: <Beaker size={24} color="#8B1538" />,
+      title: 'Acidity Balance',
+      description: 'Proper pH and acidity levels are crucial for wine stability and taste',
+    },
+    {
+      icon: <Award size={24} color="#8B1538" />,
+});
