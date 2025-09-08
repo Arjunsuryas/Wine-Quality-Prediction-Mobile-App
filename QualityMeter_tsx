@@ -1,0 +1,25 @@
+import React, { useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  Dimensions,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Award, TrendingUp, CircleAlert as AlertCircle } from 'lucide-react-native';
+import type { WinePrediction } from '@/types/wine';
+
+interface QualityMeterProps {
+  prediction: WinePrediction;
+}
+
+const { width } = Dimensions.get('window');
+
+export default function QualityMeter({ prediction }: QualityMeterProps) {
+  const scaleAnimation = useRef(new Animated.Value(0)).current;
+  const fadeAnimation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.sequence([
+});
