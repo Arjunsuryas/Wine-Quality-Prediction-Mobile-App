@@ -1,26 +1,58 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  SafeAreaView,
-} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Grape, Beaker, Award, Brain } from 'lucide-react-native';
+import tkinter as tk
+from tkinter import ttk
 
-export default function AboutScreen() {
-  const factors = [
+# Define the factors
+factors = [
     {
-      icon: <Grape size={24} color="#8B1538" />,
-      title: 'Alcohol Content',
-      description: 'Higher alcohol levels generally improve wine quality up to an optimal point',
+        "title": "Alcohol Content",
+        "description": "Higher alcohol levels generally improve wine quality up to an optimal point",
     },
     {
-      icon: <Beaker size={24} color="#8B1538" />,
-      title: 'Acidity Balance',
-      description: 'Proper pH and acidity levels are crucial for wine stability and taste',
+        "title": "Acidity Balance",
+        "description": "Proper pH and acidity levels are crucial for wine stability and taste",
     },
     {
-      icon: <Award size={24} color="#8B1538" />,
-});
+        "title": "Awards",
+        "description": "Recognition and awards can indicate wine quality",
+    },
+    {
+        "title": "Aroma & Flavor",
+        "description": "Complex aromas and balanced flavors contribute to wine excellence",
+    },
+]
+
+# Initialize main window
+root = tk.Tk()
+root.title("About Wine Factors")
+root.geometry("500x400")
+
+# Create a scrollable frame
+canvas = tk.Canvas(root)
+scrollbar = ttk.Scrollbar(root, orient="vertical", command=canvas.yview)
+scrollable_frame = ttk.Frame(canvas)
+
+scrollable_frame.bind(
+    "<Configure>",
+    lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+)
+
+canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+canvas.configure(yscrollcommand=scrollbar.set)
+
+# Add factors to the frame
+for factor in factors:
+    frame = ttk.Frame(scrollable_frame, padding=10)
+    frame.pack(fill="x", pady=5)
+
+    title = ttk.Label(frame, text=factor["title"], font=("Helvetica", 14, "bold"))
+    title.pack(anchor="w")
+
+    description = ttk.Label(frame, text=factor["description"], wraplength=450)
+    description.pack(anchor="w")
+
+# Pack everything
+canvas.pack(side="left", fill="both", expand=True)
+scrollbar.pack(side="right", fill="y")
+
+# Run the app
+root.mainloop()
