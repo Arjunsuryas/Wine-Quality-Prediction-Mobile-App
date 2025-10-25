@@ -39,20 +39,15 @@ scrollable_frame.bind(
 canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 canvas.configure(yscrollcommand=scrollbar.set)
 
-# Add factors to the frame
-for factor in factors:
-    frame = ttk.Frame(scrollable_frame, padding=10)
-    frame.pack(fill="x", pady=5)
-
-    title = ttk.Label(frame, text=factor["title"], font=("Helvetica", 14, "bold"))
-    title.pack(anchor="w")
-
-    description = ttk.Label(frame, text=factor["description"], wraplength=450)
-    description.pack(anchor="w")
-
-# Pack everything
 canvas.pack(side="left", fill="both", expand=True)
 scrollbar.pack(side="right", fill="y")
 
-# Run the app
+# Add factor content to scrollable frame
+for factor in factors:
+    title_label = tk.Label(scrollable_frame, text=factor["title"], font=("Helvetica", 14, "bold"), anchor="w")
+    title_label.pack(fill="x", padx=10, pady=(10, 0))
+
+    desc_label = tk.Label(scrollable_frame, text=factor["description"], font=("Helvetica", 12), wraplength=460, justify="left", anchor="w")
+    desc_label.pack(fill="x", padx=10, pady=(2, 10))
+
 root.mainloop()
